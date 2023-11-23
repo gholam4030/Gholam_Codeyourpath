@@ -2,6 +2,17 @@ from math import sqrt
 
 
 def solve_quadratic(a, b, c):
+    """
+    Calculates x values for specified quadratic equation coefficients
+    :param a: first coefficient of quadratic equation
+    :type a: float
+    :param b: second coefficient of quadratic equation
+    :type b: float
+    :param c: third coefficient of quadratic equation
+    :type c: float
+    :return: Calculated x values as list or None if there are no solutions
+    :rtype: list or None
+    """
     # Calculate the discriminant
     discriminant = b**2 - 4 * a * c
 
