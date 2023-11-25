@@ -1,5 +1,6 @@
 from math import sqrt
 
+def solve_quadratic(a: float, b: float, c: float):
 
 def solve_quadratic(a, b, c):
     """
@@ -27,38 +28,11 @@ def solve_quadratic(a, b, c):
         x = -b / (2 * a)
         return [x]
     else:
-        # No real roots
+        # No real solution
         return None
 
 
 # Tests
-assert solve_quadratic(56, 67, 2) == [2.0, 1.0]  # D > 0, Two solutions: [2.0, 1.0]
-assert solve_quadratic(1, 34, 1) == [1.0]  # D = 0, One solution: [1.0]
-assert solve_quadratic(1, 2, 1) is None  # D < 0, No real solution: None
-
-
-# Test cases
-test_cases = [
-    # Two real roots
-    ((1, -3, 2), [2.0, 1.0]),
-
-    # One real root
-    ((1, -2, 1), [1.0]),
-
-    # No real roots (discriminant < 0)
-    ((1, 2, 5), None),
-]
-
-# Validate the results for each test case
-for i, (coefficients, expected_result) in enumerate(test_cases, start=1):
-    result = solve_quadratic(*coefficients)
-
-    print(f"\nTest Case {i}:")
-    print(f"Coefficients: {coefficients}")
-    print("Expected Result:", expected_result)
-    print("Actual Result:", result)
-
-    assert result == expected_result
-
-# If all assertions pass, print success message
-print("\nAll test cases passed successfully!")
+assert solve_quadratic(1, -3, 2) == [2.0, 1.0]  # D > 0, Two solutions: [2.0, 1.0]
+assert solve_quadratic(1, -2, 1) == [1.0]  # D = 0, One solution: [1.0]
+assert solve_quadratic(1, 2, 5) is None  # D < 0, No real solution: None
