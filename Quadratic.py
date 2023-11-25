@@ -1,37 +1,40 @@
 from math import sqrt
 
-def solve_quadratic(a: float, b: float, c: float):
 
-    #این ها فقط تشریحات است برای کسی که کود شما را میخوانند
+def solve_quadratic(a, b, c):
     """
-    Calculate the roots of a quadratic equation.
-
-    Parameters:
-    - a (float): Coefficient of x^2.
-    - b (float): Coefficient of x.
-    - c (float): Constant term.
-
-    Returns:
-    List: A list containing the roots or None if D < 0.
+    Calculates x values for specified quadratic equation coefficients
+    :param a: first coefficient of quadratic equation
+    :type a: float
+    :param b: second coefficient of quadratic equation
+    :type b: float
+    :param c: third coefficient of quadratic equation
+    :type c: float
+    :return: Calculated x values as list or None if there are no solutions
+    :rtype: list or None
     """
-    # اخر تشریحات
     # Calculate the discriminant
-    discriminant = b**2 - 4*a*c
+    discriminant = b**2 - 4 * a * c
 
-    # Check the discriminant and calculate solutions accordingly
+    # Check the discriminant
     if discriminant > 0:
-        # Two real roots
-        root1 = (-b + sqrt(discriminant)) / (2*a)
-        root2 = (-b - sqrt(discriminant)) / (2*a)
-        return [root1, root2]
+        # Two real and distinct solutions
+        x1 = (-b + sqrt(discriminant)) / (2 * a)
+        x2 = (-b - sqrt(discriminant)) / (2 * a)
+        return [x1, x2]
     elif discriminant == 0:
-        # One real root
-        root = -b / (2*a)
-        return [root]
+        # One real solution
+        x = -b / (2 * a)
+        return [x]
     else:
         # No real roots
         return None
 
+
+# Tests
+assert solve_quadratic(56, 67, 2) == [2.0, 1.0]  # D > 0, Two solutions: [2.0, 1.0]
+assert solve_quadratic(1, 34, 1) == [1.0]  # D = 0, One solution: [1.0]
+assert solve_quadratic(1, 2, 1) is None  # D < 0, No real solution: None
 
 
 # Test cases
