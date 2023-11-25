@@ -1,6 +1,6 @@
 from math import sqrt
 
-def solve_quadratic(a: float, b: float, c: float):
+
 
 def solve_quadratic(a, b, c):
     """
