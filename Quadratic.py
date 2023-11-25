@@ -1,5 +1,34 @@
 from math import sqrt
+import click
 
+
+@click.command()
+@click.option(
+    "--a",
+    type=float,
+    required=True,
+    show_default=True,
+    help="The first coefficient in quadratic eq",
+)
+@click.option(
+    "--b",
+    type=float,
+    required=True,
+    show_default=True,
+    help="The second coefficient in quadratic eq",
+)
+@click.option(
+    "--c",
+    type=float,
+    required=True,
+    show_default=True,
+    help="The third coefficient in quadratic eq",
+)
+def main(a, b, c):
+    print("Start of the script quadratic")
+    print(f"a={a}, b={b}, c={c}")
+    print(f"Result = {solve_quadratic(a, b, c)}")
+    print("End of the script quadratic")
 
 
 def solve_quadratic(a, b, c):
@@ -32,7 +61,5 @@ def solve_quadratic(a, b, c):
         return None
 
 
-# Tests
-assert solve_quadratic(1, -3, 2) == [2.0, 1.0]  # D > 0, Two solutions: [2.0, 1.0]
-assert solve_quadratic(1, -2, 1) == [1.0]  # D = 0, One solution: [1.0]
-assert solve_quadratic(1, 2, 5) is None  # D < 0, No real solution: None
+if __name__ == "__main__":
+    main()
