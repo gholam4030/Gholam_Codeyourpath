@@ -1,4 +1,4 @@
-import argparse
+import click
 
 def calculate_interest(principal, rate, time):
     """
@@ -17,27 +17,28 @@ def calculate_interest(principal, rate, time):
     interest = amount - principal
     return interest, amount
 
-def main():
+@click.command()
+@click.option('--principal', type=float, help='Initial amount of money')
+@click.option('--rate', type=float, help='Annual interest rate (in %)')
+@click.option('--time', type=float, help='Amount of years')
+def main(principal, rate, time):
     """
-    Main function to handle command line arguments and display results.
+    Calculate compound interest.
+
+    This script takes command line arguments for principal, rate, and time
+    and calculates compound interest.
     """
-    parser = argparse.ArgumentParser(description='Calculate compound interest.')
-    parser.add_argument('--principal', type=float, help='Initial amount of money')
-    parser.add_argument('--rate', type=float, help='Annual interest rate (in %)')
-    parser.add_argument('--time', type=float, help='Amount of years')
+    if not all([principal, rate, time]):
+        click.echo("Please provide values for principal, rate, and time.")
+        return
 
-    args = parser.parse_args()
+    interest, amount = calculate_interest(principal, rate, time)
 
-    if not all([args.principal, args.rate, args.time]):
-        parser.error("Please provide values for principal, rate, and time.")
-
-    interest, amount = calculate_interest(args.principal, args.rate, args.time)
-
-    print(f"Principal: ${args.principal}")
-    print(f"Annual Interest Rate: {args.rate}%")
-    print(f"Time (years): {args.time}")
-    print(f"Interest Earned: ${interest:.2f}")
-    print(f"Total Amount: ${amount:.2f}")
+    click.echo(f"Principal: ${principal}")
+    click.echo(f"Annual Interest Rate: {rate}%")
+    click.echo(f"Time (years): {time}")
+    click.echo(f"Interest Earned: ${interest:.2f}")
+    click.echo(f"Total Amount: ${amount:.2f}")
 
 if __name__ == "__main__":
     main()
