@@ -1,5 +1,6 @@
 import click
 
+
 def calculate_interest(principal, rate, time):
     """
     Calculate compound interest.
@@ -12,15 +13,18 @@ def calculate_interest(principal, rate, time):
     Returns:
         tuple: A tuple containing the interest earned and the total amount after interest.
     """
+    if any(var <= 0 for var in (principal, rate, time)):
+        raise ValueError("Every variable should be a positive number")
     # Formula for compound interest
     amount = principal * (1 + rate / 100) ** time
     interest = amount - principal
     return interest, amount
 
+
 @click.command()
-@click.option('--principal', type=float, help='Initial amount of money')
-@click.option('--rate', type=float, help='Annual interest rate (in %)')
-@click.option('--time', type=float, help='Amount of years')
+@click.option("-p", "--principal", type=float, help="Initial amount of money")
+@click.option("-r", "--rate", type=float, help="Annual interest rate (in %)")
+@click.option("-t", "--time", type=float, help="Amount of years")
 def main(principal, rate, time):
     """
     Calculate compound interest.
@@ -32,13 +36,16 @@ def main(principal, rate, time):
         click.echo("Please provide values for principal, rate, and time.")
         return
 
-    interest, amount = calculate_interest(principal, rate, time)
+    try:
+        interest, amount = calculate_interest(principal, rate, time)
+        click.echo(f"Principal: ${principal}")
+        click.echo(f"Annual Interest Rate: {rate}%")
+        click.echo(f"Time (years): {time}")
+        click.echo(f"Interest Earned: ${interest:.2f}")
+        click.echo(f"Total Amount: ${amount:.2f}")
+    except ValueError as e:
+        click.echo(str(e))  # Display the specific error message raised in calculate_interest
 
-    click.echo(f"Principal: ${principal}")
-    click.echo(f"Annual Interest Rate: {rate}%")
-    click.echo(f"Time (years): {time}")
-    click.echo(f"Interest Earned: ${interest:.2f}")
-    click.echo(f"Total Amount: ${amount:.2f}")
 
 if __name__ == "__main__":
     main()
