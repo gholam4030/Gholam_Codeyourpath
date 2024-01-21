@@ -2,6 +2,21 @@
 
 Here will be all the documentation.
 
+## Installing libraries
+To install libraries run
+```shell
+pip install -r <path_to_requirements.txt_file> 
+```
+
+## Notebooks
+To run notebooks using command line **(Terminal)** use this command:
+```shell
+jupyter notebook <path_to_notebook>
+```
+`<path_to_notebook>` is replaced your path, be it windows path
+or linux.
+
+
 ## `Quadratic.py`
 Calculates x values for specified quadratic 
 equation coefficients - `ax^2 + bx + c = 0`. 
