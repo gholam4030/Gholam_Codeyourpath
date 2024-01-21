@@ -1,4 +1,4 @@
-from Quadratic import solve_quadratic
+from legacy_code.Quadratic import solve_quadratic
 
 
 def test_solutions():
